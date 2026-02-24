@@ -16,7 +16,10 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://colibri.fashion"),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ||
+      "https://colibri-site-production.up.railway.app"
+  ),
   title: "Colibri \u2014 Fashion Intelligence for Brands",
   description:
     "Proprietary data and AI insights for fashion brands and retailers. Avenor\u2019s B2B layer.",
