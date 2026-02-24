@@ -1,35 +1,32 @@
 "use client";
 
 import { useInView } from "@/lib/useInView";
-
-const values = [
-  {
-    number: "01",
-    title: "Estendi il funnel oltre il punto vendita.",
-    body: "Il vostro cliente scopre la vostra offerta durante la fase di pianificazione — settimane prima di qualsiasi touchpoint fisico. Con Colibri il vostro catalogo diventa ricercabile e acquistabile da milioni di consumatori nel momento esatto in cui decidono cosa comprare.",
-    tags: ["Pre-departure intent", "Integrazione catalogo", "Click & Collect"],
-  },
-  {
-    number: "02",
-    title: "Converti il traffico con confidenza.",
-    body: "Il virtual try-on elimina la principale barriera all'acquisto luxury online: l'impossibilità di visualizzare la vestibilità. Gli utenti che provano digitalmente convertono a tassi significativamente più alti e restituiscono molto meno frequentemente.",
-    tags: [
-      "Virtual try-on",
-      "Styling personalizzato",
-      "Checkout unificato",
-      "\u2193 Resi",
-    ],
-  },
-  {
-    number: "03",
-    title: "Accedi a intelligence che nessun altro ha.",
-    body: "Colibri aggrega dati di preferenza consumer cross-brand e cross-mercato in tempo reale. Come partner strategico, accedi al Fashion Graph — il layer proprietario che mappa trend di stile, affinità brand e intent d'acquisto su base globale.",
-    tags: ["Dashboard real-time", "Trend forecasting", "Benchmark competitor"],
-  },
-];
+import { useTranslation } from "@/lib/i18n/context";
 
 export default function PartnershipValue() {
   const { ref, isInView } = useInView();
+  const { t } = useTranslation();
+
+  const values = [
+    {
+      number: "01",
+      title: t.partnership.value1Title,
+      body: t.partnership.value1Body,
+      tags: t.partnership.value1Tags,
+    },
+    {
+      number: "02",
+      title: t.partnership.value2Title,
+      body: t.partnership.value2Body,
+      tags: t.partnership.value2Tags,
+    },
+    {
+      number: "03",
+      title: t.partnership.value3Title,
+      body: t.partnership.value3Body,
+      tags: t.partnership.value3Tags,
+    },
+  ];
 
   return (
     <section id="partnership" className="bg-white">
@@ -39,7 +36,7 @@ export default function PartnershipValue() {
         className="mx-auto max-w-6xl px-8 py-32 lg:px-16 lg:py-44"
       >
         <p className="text-[11px] font-medium tracking-[0.3em] uppercase text-colibri-muted">
-          Perché Colibri
+          {t.partnership.label}
         </p>
 
         <h2
@@ -47,9 +44,9 @@ export default function PartnershipValue() {
             isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          Tre ragioni per cui
+          {t.partnership.titleLine1}
           <br />
-          questo cambia il vostro business.
+          {t.partnership.titleLine2}
         </h2>
 
         <div className="mt-28 space-y-0">

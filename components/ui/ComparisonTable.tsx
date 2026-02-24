@@ -1,10 +1,6 @@
-const features = [
-  "Fashion Search",
-  "AI Assistant",
-  "Virtual Try-On",
-  "Mercato Europeo",
-  "B2B Intelligence",
-];
+"use client";
+
+import { useTranslation } from "@/lib/i18n/context";
 
 const competitors = [
   {
@@ -30,6 +26,16 @@ const competitors = [
 ];
 
 export default function ComparisonTable() {
+  const { t } = useTranslation();
+
+  const features = [
+    t.market.featureFashionSearch,
+    t.market.featureAiAssistant,
+    t.market.featureVirtualTryOn,
+    t.market.featureEuropeanMarket,
+    t.market.featureB2bIntelligence,
+  ];
+
   return (
     <div className="-mx-4 overflow-x-auto px-4">
       <table className="w-full min-w-[560px] border-collapse">

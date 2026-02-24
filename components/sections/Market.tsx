@@ -1,29 +1,19 @@
 "use client";
 
 import { useInView } from "@/lib/useInView";
+import { useTranslation } from "@/lib/i18n/context";
 import ComparisonTable from "@/components/ui/ComparisonTable";
-
-const stats = [
-  {
-    value: "$2.3T",
-    label: "Valore mercato fashion e-commerce 2034 (CAGR 10%)",
-  },
-  {
-    value: "Primo",
-    label: "Entrante europeo con AI fashion search completo",
-  },
-  {
-    value: "74%",
-    label: "Viaggiatori che pianificano acquisti pre-viaggio",
-  },
-  {
-    value: "81%",
-    label: "Gen Z che preferisce lo shopping AI-assisted",
-  },
-];
 
 export default function Market() {
   const { ref, isInView } = useInView();
+  const { t } = useTranslation();
+
+  const stats = [
+    { value: t.market.stat1Value, label: t.market.stat1Label },
+    { value: t.market.stat2Value, label: t.market.stat2Label },
+    { value: t.market.stat3Value, label: t.market.stat3Label },
+    { value: t.market.stat4Value, label: t.market.stat4Label },
+  ];
 
   return (
     <section id="mercato" className="bg-colibri-bg">
@@ -33,7 +23,7 @@ export default function Market() {
         className="mx-auto max-w-6xl px-8 py-32 lg:px-16 lg:py-44"
       >
         <p className="text-[11px] font-medium tracking-[0.3em] uppercase text-colibri-muted">
-          Il mercato
+          {t.market.label}
         </p>
 
         <h2
@@ -41,11 +31,11 @@ export default function Market() {
             isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          $2.3 trilioni di mercato.
+          {t.market.titleLine1}
           <br />
-          Nessun player digitale
+          {t.market.titleLine2}
           <br />
-          dominante in Europa.
+          {t.market.titleLine3}
         </h2>
 
         {/* Stat row */}

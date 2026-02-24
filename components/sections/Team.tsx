@@ -1,30 +1,32 @@
 "use client";
 
 import { useInView } from "@/lib/useInView";
-
-const team = [
-  {
-    initials: "FV",
-    name: "Fiammetta Viceconte",
-    role: "Founder & CEO",
-    bio: "Entrepreneur in Residence at Finnovaction. Ex Gucci e Loro Piana. MSc in International Management.",
-  },
-  {
-    initials: "EMP",
-    name: "Emanuele Martino Podo",
-    role: "Co-Founder & COO",
-    bio: "Ingegnere con esperienza operativa in piattaforme tecnologiche complesse e architetture di sistema.",
-  },
-  {
-    initials: "FT",
-    name: "Federico Targa",
-    role: "Chief Technology Officer",
-    bio: "Software engineer specializzato in piattaforme AI-driven e sistemi consumer scalabili.",
-  },
-];
+import { useTranslation } from "@/lib/i18n/context";
 
 export default function Team() {
   const { ref, isInView } = useInView();
+  const { t } = useTranslation();
+
+  const team = [
+    {
+      initials: "FV",
+      name: t.team.member1Name,
+      role: t.team.member1Role,
+      bio: t.team.member1Bio,
+    },
+    {
+      initials: "EMP",
+      name: t.team.member2Name,
+      role: t.team.member2Role,
+      bio: t.team.member2Bio,
+    },
+    {
+      initials: "FT",
+      name: t.team.member3Name,
+      role: t.team.member3Role,
+      bio: t.team.member3Bio,
+    },
+  ];
 
   return (
     <section id="team" className="bg-white">
@@ -34,7 +36,7 @@ export default function Team() {
         className="mx-auto max-w-6xl px-8 py-32 lg:px-16 lg:py-44"
       >
         <p className="text-[11px] font-medium tracking-[0.3em] uppercase text-colibri-muted">
-          Il team
+          {t.team.label}
         </p>
 
         <h2
@@ -42,9 +44,9 @@ export default function Team() {
             isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          Expertise nel fashion.
+          {t.team.titleLine1}
           <br />
-          Precisione tecnologica.
+          {t.team.titleLine2}
         </h2>
 
         <div

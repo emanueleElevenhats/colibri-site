@@ -1,16 +1,18 @@
 "use client";
 
 import { useInView } from "@/lib/useInView";
-
-const stats = [
-  { value: "200+", label: "Brand connessi" },
-  { value: "10s", label: "Tempo medio ricerca" },
-  { value: "↓53%", label: "Riduzione resi" },
-  { value: "$2.3T", label: "Mercato indirizzabile" },
-];
+import { useTranslation } from "@/lib/i18n/context";
 
 export default function Hero() {
   const { ref, isInView } = useInView(0.1);
+  const { t } = useTranslation();
+
+  const stats = [
+    { value: t.hero.stat1Value, label: t.hero.stat1Label },
+    { value: t.hero.stat2Value, label: t.hero.stat2Label },
+    { value: t.hero.stat3Value, label: t.hero.stat3Label },
+    { value: t.hero.stat4Value, label: t.hero.stat4Label },
+  ];
 
   return (
     <section
@@ -26,30 +28,28 @@ export default function Hero() {
         >
           <div className="mb-8 h-px w-16 bg-colibri-gold" />
           <p className="text-[11px] font-medium tracking-[0.3em] uppercase text-colibri-gold">
-            Intelligence per la moda
+            {t.hero.label}
           </p>
         </div>
 
-        {/* H1 — massive, editorial */}
+        {/* H1 */}
         <h1
           className={`mt-12 max-w-4xl font-serif text-[2.75rem] font-normal leading-[1.1] tracking-[-0.01em] text-white transition-all delay-200 duration-1000 sm:text-5xl md:text-6xl lg:text-[5.5rem] ${
             isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          La nuova intelligenza
+          {t.hero.titleLine1}
           <br />
-          del mercato fashion.
+          {t.hero.titleLine2}
         </h1>
 
-        {/* Subheading — lighter, more space */}
+        {/* Subheading */}
         <p
           className={`mt-12 max-w-xl text-lg font-light leading-[1.8] text-white/50 md:text-xl transition-all delay-400 duration-1000 ${
             isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          Colibri è il layer B2B di Avenor: dati proprietari sul comportamento
-          d&apos;acquisto di milioni di consumatori fashion, strutturati in
-          insight azionabili per brand e retailer.
+          {t.hero.subtitle}
         </p>
 
         {/* CTAs */}
@@ -62,13 +62,13 @@ export default function Hero() {
             href="#piattaforma"
             className="border border-colibri-gold px-10 py-4 text-[11px] font-medium tracking-[0.2em] uppercase text-colibri-gold transition-all duration-300 hover:bg-colibri-gold hover:text-white"
           >
-            Scopri la piattaforma
+            {t.hero.ctaPrimary}
           </a>
           <a
             href="#contattaci"
             className="group px-2 py-4 text-[11px] font-medium tracking-[0.2em] uppercase text-white/40 transition-colors duration-300 hover:text-white"
           >
-            Parla con il team{" "}
+            {t.hero.ctaSecondary}{" "}
             <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
               &rarr;
             </span>
@@ -76,7 +76,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Stat strip — bottom bar */}
+      {/* Stat strip */}
       <div className="border-t border-white/[0.06]">
         <div className="mx-auto grid max-w-6xl grid-cols-2 gap-y-8 px-8 py-10 md:grid-cols-4 lg:px-16">
           {stats.map((stat, i) => (

@@ -1,36 +1,18 @@
 "use client";
 
 import { useInView } from "@/lib/useInView";
-
-const features = [
-  {
-    number: "01",
-    title: "AI Fashion Assistant",
-    description:
-      "Agente conversazionale che cura outfit su misura per body type, budget, occasione, palette cromatica e preferenze brand.",
-  },
-  {
-    number: "02",
-    title: "Virtual Try-On in Tempo Reale",
-    description:
-      "Gli utenti visualizzano i capi sul proprio avatar personalizzato prima dell'acquisto — riducendo i resi e aumentando la conversion.",
-  },
-  {
-    number: "03",
-    title: "Visual Search",
-    description:
-      "Riconoscimento immagini che identifica qualsiasi capo da una foto e restituisce risultati immediati.",
-  },
-  {
-    number: "04",
-    title: "Social Commerce Layer",
-    description:
-      "Avenor W: la community fashion dove gli utenti condividono outfit, seguono stili e acquistano direttamente dai post.",
-  },
-];
+import { useTranslation } from "@/lib/i18n/context";
 
 export default function Platform() {
   const { ref, isInView } = useInView();
+  const { t } = useTranslation();
+
+  const features = [
+    { number: "01", title: t.platform.feature1Title, description: t.platform.feature1Desc },
+    { number: "02", title: t.platform.feature2Title, description: t.platform.feature2Desc },
+    { number: "03", title: t.platform.feature3Title, description: t.platform.feature3Desc },
+    { number: "04", title: t.platform.feature4Title, description: t.platform.feature4Desc },
+  ];
 
   return (
     <section id="piattaforma" className="bg-colibri-bg">
@@ -40,7 +22,7 @@ export default function Platform() {
         className="mx-auto max-w-6xl px-8 py-32 lg:px-16 lg:py-44"
       >
         <p className="text-[11px] font-medium tracking-[0.3em] uppercase text-colibri-muted">
-          La piattaforma
+          {t.platform.label}
         </p>
 
         <div
@@ -49,15 +31,12 @@ export default function Platform() {
           }`}
         >
           <h2 className="max-w-3xl font-serif text-4xl font-normal leading-[1.15] tracking-[-0.01em] text-colibri-text md:text-5xl">
-            Un motore.
+            {t.platform.titleLine1}
             <br />
-            Ogni brand. Ogni consumatore.
+            {t.platform.titleLine2}
           </h2>
           <p className="mt-10 max-w-2xl text-lg font-light leading-[1.85] text-colibri-muted">
-            Avenor è il motore di ricerca fashion AI-powered che consente agli
-            utenti di scoprire, provare e acquistare capi da qualsiasi brand al
-            mondo &mdash; attraverso un&apos;unica interfaccia personalizzata.
-            Colibri mette questa infrastruttura al servizio dei brand partner.
+            {t.platform.body}
           </p>
         </div>
 

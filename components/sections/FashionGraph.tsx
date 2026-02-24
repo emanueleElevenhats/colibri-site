@@ -1,40 +1,28 @@
 "use client";
 
 import { useInView } from "@/lib/useInView";
-
-const nodes = [
-  { label: "Stili", cx: 300, cy: 60 },
-  { label: "Brand", cx: 540, cy: 150 },
-  { label: "Occasioni", cx: 490, cy: 340 },
-  { label: "Fit", cx: 110, cy: 340 },
-  { label: "Mercati", cx: 60, cy: 150 },
-  { label: "Budget", cx: 300, cy: 410 },
-];
+import { useTranslation } from "@/lib/i18n/context";
+import type { TranslationKeys } from "@/lib/i18n/types";
 
 const edges = [
   [0, 1], [1, 2], [2, 5], [5, 3], [3, 4], [4, 0],
   [0, 5], [1, 3], [2, 4], [0, 2], [1, 4], [3, 0],
 ];
 
-const products = [
-  {
-    title: "Report Periodici",
-    description:
-      "Deep-dive mensili, trimestrali o annuali su performance brand, trend e positioning competitivo — on demand o in abbonamento.",
-  },
-  {
-    title: "Dashboard Live",
-    description:
-      "Dashboard integrata (compatibile Salesforce/Tableau) aggiornata in near real-time. Monitorate trend e preferenze nel momento in cui emergono.",
-  },
-  {
-    title: "Luxury Brand Tracking",
-    description:
-      "Riservato ai partner premium — tracciamento opt-in dei profili high-value, con piena compliance GDPR dal day one.",
-  },
-];
+function getNodes(t: TranslationKeys) {
+  return [
+    { label: t.fashionGraph.nodeStyles, cx: 300, cy: 60 },
+    { label: t.fashionGraph.nodeBrand, cx: 540, cy: 150 },
+    { label: t.fashionGraph.nodeOccasions, cx: 490, cy: 340 },
+    { label: t.fashionGraph.nodeFit, cx: 110, cy: 340 },
+    { label: t.fashionGraph.nodeMarkets, cx: 60, cy: 150 },
+    { label: t.fashionGraph.nodeBudget, cx: 300, cy: 410 },
+  ];
+}
 
-function FashionGraphSVG() {
+function FashionGraphSVG({ t }: { t: TranslationKeys }) {
+  const nodes = getNodes(t);
+
   return (
     <svg
       viewBox="0 0 600 470"
@@ -58,7 +46,6 @@ function FashionGraphSVG() {
       {/* Nodes */}
       {nodes.map((node, i) => (
         <g key={i}>
-          {/* Outer pulse ring */}
           <circle
             cx={node.cx}
             cy={node.cy}
@@ -70,7 +57,6 @@ function FashionGraphSVG() {
             className="animate-pulse-gold"
             style={{ animationDelay: `${i * 500}ms` }}
           />
-          {/* Inner ring */}
           <circle
             cx={node.cx}
             cy={node.cy}
@@ -80,7 +66,6 @@ function FashionGraphSVG() {
             strokeWidth="0.5"
             opacity="0.25"
           />
-          {/* Node dot */}
           <circle
             cx={node.cx}
             cy={node.cy}
@@ -89,7 +74,6 @@ function FashionGraphSVG() {
             className="animate-pulse-gold"
             style={{ animationDelay: `${i * 500}ms` }}
           />
-          {/* Label */}
           <text
             x={node.cx}
             y={node.cy + 32}
@@ -110,6 +94,13 @@ function FashionGraphSVG() {
 
 export default function FashionGraph() {
   const { ref, isInView } = useInView();
+  const { t } = useTranslation();
+
+  const products = [
+    { title: t.fashionGraph.product1Title, description: t.fashionGraph.product1Desc },
+    { title: t.fashionGraph.product2Title, description: t.fashionGraph.product2Desc },
+    { title: t.fashionGraph.product3Title, description: t.fashionGraph.product3Desc },
+  ];
 
   return (
     <section id="fashion-graph" className="bg-colibri-dark">
@@ -118,7 +109,7 @@ export default function FashionGraph() {
         className="mx-auto max-w-6xl px-8 py-32 lg:px-16 lg:py-44"
       >
         <p className="text-[11px] font-medium tracking-[0.3em] uppercase text-colibri-gold/70">
-          Il vantaggio competitivo
+          {t.fashionGraph.label}
         </p>
 
         <div
@@ -127,27 +118,23 @@ export default function FashionGraph() {
           }`}
         >
           <h2 className="max-w-3xl font-serif text-4xl font-normal leading-[1.15] tracking-[-0.01em] text-white md:text-5xl">
-            Fashion Graph.
+            {t.fashionGraph.titleLine1}
             <br />
-            Il vostro vantaggio competitivo.
+            {t.fashionGraph.titleLine2}
           </h2>
           <p className="mt-10 max-w-xl text-lg font-light leading-[1.85] text-white/40">
-            Il Fashion Graph mappa le relazioni tra ogni variabile nel percorso
-            fashion di un consumatore &mdash; aggiornato in continuazione.
-            Disponibile come report periodici o dashboard live in abbonamento.
+            {t.fashionGraph.body}
           </p>
         </div>
 
-        {/* Graph visualization */}
         <div
           className={`my-24 transition-all delay-300 duration-1000 ${
             isInView ? "opacity-100 scale-100" : "opacity-0 scale-95"
           }`}
         >
-          <FashionGraphSVG />
+          <FashionGraphSVG t={t} />
         </div>
 
-        {/* Product tiers */}
         <div
           className={`grid gap-px bg-white/[0.04] sm:grid-cols-3 transition-all delay-500 duration-1000 ${
             isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"

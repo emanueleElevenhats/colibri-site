@@ -1,29 +1,29 @@
 "use client";
 
 import { useInView } from "@/lib/useInView";
-
-const stats = [
-  {
-    value: "62%",
-    caption:
-      "dei journey e-commerce inizia su motore di ricerca",
-    source: "WPP Media",
-  },
-  {
-    value: "40%",
-    caption: "tasso medio di reso nel fashion online",
-    source: "Eco-Age",
-  },
-  {
-    value: "4 su 10",
-    caption:
-      "consumatori insoddisfatti dell'esperienza di scoperta prodotto",
-    source: "PR Newswire",
-  },
-];
+import { useTranslation } from "@/lib/i18n/context";
 
 export default function Context() {
   const { ref, isInView } = useInView();
+  const { t } = useTranslation();
+
+  const stats = [
+    {
+      value: t.context.stat1Value,
+      caption: t.context.stat1Caption,
+      source: t.context.stat1Source,
+    },
+    {
+      value: t.context.stat2Value,
+      caption: t.context.stat2Caption,
+      source: t.context.stat2Source,
+    },
+    {
+      value: t.context.stat3Value,
+      caption: t.context.stat3Caption,
+      source: t.context.stat3Source,
+    },
+  ];
 
   return (
     <section id="contesto" className="bg-white">
@@ -33,7 +33,7 @@ export default function Context() {
         className="mx-auto max-w-6xl px-8 py-32 lg:px-16 lg:py-44"
       >
         <p className="text-[11px] font-medium tracking-[0.3em] uppercase text-colibri-muted">
-          Il contesto
+          {t.context.label}
         </p>
 
         <div className="mt-20 grid gap-20 lg:grid-cols-2 lg:gap-24">
@@ -46,17 +46,14 @@ export default function Context() {
             }`}
           >
             <h2 className="font-serif text-4xl font-normal leading-[1.15] tracking-[-0.01em] text-colibri-text md:text-5xl">
-              Il consumatore fashion
+              {t.context.titleLine1}
               <br />
-              decide prima ancora
+              {t.context.titleLine2}
               <br />
-              di entrare in negozio.
+              {t.context.titleLine3}
             </h2>
             <p className="mt-10 max-w-lg text-lg font-light leading-[1.85] text-colibri-muted">
-              Il 62% dei percorsi d&apos;acquisto online inizia con una ricerca.
-              Le decisioni vengono prese giorni &mdash; spesso settimane &mdash;
-              prima di qualsiasi touchpoint fisico. I brand che non presiedono
-              questo momento perdono visibilità, clienti e dati preziosi.
+              {t.context.body}
             </p>
           </div>
 

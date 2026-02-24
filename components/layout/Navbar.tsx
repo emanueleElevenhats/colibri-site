@@ -1,12 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslation } from "@/lib/i18n/context";
+import type { Locale } from "@/lib/i18n/types";
 
-const navLinks = [
-  { label: "La Piattaforma", href: "#piattaforma" },
-  { label: "Fashion Graph", href: "#fashion-graph" },
-  { label: "Partnership", href: "#partnership" },
-  { label: "Team", href: "#team" },
+const LOCALES: { locale: Locale; code: string; label: string }[] = [
+  { locale: "en", code: "EN", label: "English" },
+  { locale: "it", code: "IT", label: "Italiano" },
+  { locale: "es", code: "ES", label: "Espa\u00f1ol" },
+  { locale: "fr", code: "FR", label: "Fran\u00e7ais" },
 ];
 
 function HummingbirdIcon() {
@@ -27,9 +29,45 @@ function HummingbirdIcon() {
   );
 }
 
+function LanguageSwitcher({ scrolled }: { scrolled: boolean }) {
+  const { locale, setLocale } = useTranslation();
+
+  return (
+    <div className="flex items-center gap-1">
+      {LOCALES.map((item) => (
+        <button
+          key={item.locale}
+          onClick={() => setLocale(item.locale)}
+          className={`px-2 py-1 text-[10px] font-medium tracking-[0.15em] transition-all duration-200 ${
+            locale === item.locale
+              ? scrolled
+                ? "text-colibri-gold"
+                : "text-colibri-gold"
+              : scrolled
+                ? "text-colibri-muted/40 hover:text-colibri-muted"
+                : "text-white/25 hover:text-white/60"
+          }`}
+          aria-label={item.label}
+          title={item.label}
+        >
+          {item.code}
+        </button>
+      ))}
+    </div>
+  );
+}
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { t } = useTranslation();
+
+  const navLinks = [
+    { label: t.navbar.platform, href: "#piattaforma" },
+    { label: t.navbar.fashionGraph, href: "#fashion-graph" },
+    { label: t.navbar.partnership, href: "#partnership" },
+    { label: t.navbar.team, href: "#team" },
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -57,7 +95,7 @@ export default function Navbar() {
         </a>
 
         {/* Desktop links */}
-        <div className="hidden items-center gap-10 md:flex">
+        <div className="hidden items-center gap-8 md:flex">
           {navLinks.map((link) => (
             <a
               key={link.href}
@@ -69,11 +107,12 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
+          <LanguageSwitcher scrolled={scrolled} />
           <a
             href="#contattaci"
-            className="ml-2 border border-colibri-gold px-6 py-2.5 text-[11px] tracking-[0.2em] uppercase text-colibri-gold transition-all duration-300 hover:bg-colibri-gold hover:text-white"
+            className="border border-colibri-gold px-6 py-2.5 text-[11px] tracking-[0.2em] uppercase text-colibri-gold transition-all duration-300 hover:bg-colibri-gold hover:text-white"
           >
-            Contattaci
+            {t.navbar.contact}
           </a>
         </div>
 
@@ -106,6 +145,9 @@ export default function Navbar() {
       {/* Mobile menu */}
       {mobileOpen && (
         <div className="border-t border-colibri-border bg-white px-8 py-8 md:hidden">
+          <div className="mb-6">
+            <LanguageSwitcher scrolled={true} />
+          </div>
           {navLinks.map((link) => (
             <a
               key={link.href}
@@ -121,7 +163,7 @@ export default function Navbar() {
             onClick={() => setMobileOpen(false)}
             className="mt-6 inline-block border border-colibri-gold px-6 py-2.5 text-[11px] tracking-[0.2em] uppercase text-colibri-gold"
           >
-            Contattaci
+            {t.navbar.contact}
           </a>
         </div>
       )}

@@ -1,0 +1,130 @@
+export type Locale = "en" | "it" | "es" | "fr";
+
+export type TranslationKeys = {
+  navbar: {
+    platform: string;
+    fashionGraph: string;
+    partnership: string;
+    team: string;
+    contact: string;
+  };
+  hero: {
+    label: string;
+    titleLine1: string;
+    titleLine2: string;
+    subtitle: string;
+    ctaPrimary: string;
+    ctaSecondary: string;
+    stat1Value: string;
+    stat1Label: string;
+    stat2Value: string;
+    stat2Label: string;
+    stat3Value: string;
+    stat3Label: string;
+    stat4Value: string;
+    stat4Label: string;
+  };
+  context: {
+    label: string;
+    titleLine1: string;
+    titleLine2: string;
+    titleLine3: string;
+    body: string;
+    stat1Value: string;
+    stat1Caption: string;
+    stat1Source: string;
+    stat2Value: string;
+    stat2Caption: string;
+    stat2Source: string;
+    stat3Value: string;
+    stat3Caption: string;
+    stat3Source: string;
+  };
+  platform: {
+    label: string;
+    titleLine1: string;
+    titleLine2: string;
+    body: string;
+    feature1Title: string;
+    feature1Desc: string;
+    feature2Title: string;
+    feature2Desc: string;
+    feature3Title: string;
+    feature3Desc: string;
+    feature4Title: string;
+    feature4Desc: string;
+  };
+  partnership: {
+    label: string;
+    titleLine1: string;
+    titleLine2: string;
+    value1Title: string;
+    value1Body: string;
+    value1Tags: string[];
+    value2Title: string;
+    value2Body: string;
+    value2Tags: string[];
+    value3Title: string;
+    value3Body: string;
+    value3Tags: string[];
+  };
+  fashionGraph: {
+    label: string;
+    titleLine1: string;
+    titleLine2: string;
+    body: string;
+    nodeStyles: string;
+    nodeBrand: string;
+    nodeOccasions: string;
+    nodeFit: string;
+    nodeMarkets: string;
+    nodeBudget: string;
+    product1Title: string;
+    product1Desc: string;
+    product2Title: string;
+    product2Desc: string;
+    product3Title: string;
+    product3Desc: string;
+  };
+  market: {
+    label: string;
+    titleLine1: string;
+    titleLine2: string;
+    titleLine3: string;
+    stat1Value: string;
+    stat1Label: string;
+    stat2Value: string;
+    stat2Label: string;
+    stat3Value: string;
+    stat3Label: string;
+    stat4Value: string;
+    stat4Label: string;
+    featureFashionSearch: string;
+    featureAiAssistant: string;
+    featureVirtualTryOn: string;
+    featureEuropeanMarket: string;
+    featureB2bIntelligence: string;
+  };
+  team: {
+    label: string;
+    titleLine1: string;
+    titleLine2: string;
+    member1Name: string;
+    member1Role: string;
+    member1Bio: string;
+    member2Name: string;
+    member2Role: string;
+    member2Bio: string;
+    member3Name: string;
+    member3Role: string;
+    member3Bio: string;
+  };
+  cta: {
+    title: string;
+    body: string;
+    button: string;
+  };
+  footer: {
+    copyright: string;
+  };
+};
